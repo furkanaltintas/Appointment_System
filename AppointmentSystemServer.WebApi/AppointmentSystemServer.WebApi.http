@@ -1,0 +1,11 @@
+@AppointmentSystemServer.WebApi_HostAddress = http://localhost:5169
+
+POST {{AppointmentSystemServer.WebApi_HostAddress}}/api/Auth/Login
+Accept: application/json
+Content: application/json
+{
+  "Email" :"furkanaltintas785@gmail.com",
+  "Password": "12345"
+}
+
+###
