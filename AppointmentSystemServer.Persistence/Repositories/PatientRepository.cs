@@ -1,7 +1,7 @@
-﻿using AppointmentSystemServer.Persistence.Context;
+﻿using AppointmentSystemServer.Application.Services.Repositories;
 using AppointmentSystemServer.Domain.Entities;
+using AppointmentSystemServer.Persistence.Context;
 using GenericRepository;
-using AppointmentSystemServer.Application.Services.Repositories;
 
 namespace AppointmentSystemServer.Persistence.Repositories;
 
