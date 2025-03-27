@@ -1,5 +1,9 @@
 ﻿using AppointmentSystemServer.Application.Features.Doctors.Create;
+using AppointmentSystemServer.Application.Features.Doctors.DeleteById;
 using AppointmentSystemServer.Application.Features.Doctors.GetAll;
+using AppointmentSystemServer.Application.Features.Doctors.GetAllDoctorByDepartment;
+using AppointmentSystemServer.Application.Features.Doctors.Update;
+using AppointmentSystemServer.Domain.Entities;
 using AppointmentSystemServer.WebApi.Abstractions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -20,9 +24,30 @@ public class DoctorsController : BaseController
     }
 
     [HttpPost]
+    public async Task<IActionResult> GetDoctorsByDepartment(GetAllDoctorByDepartmentQuery getAllDoctorByDepartmentQuery, CancellationToken cancellationToken)
+    {
+        Result<List<Doctor>> resultListDoctors = await _mediator.Send(getAllDoctorByDepartmentQuery, cancellationToken);
+        return StatusCode(resultListDoctors.StatusCode, resultListDoctors);
+    }
+
+    [HttpPost]
     public async Task<IActionResult> Create(CreateDoctorCommand createDoctorCommand)
     {
-        Result<Unit> result = await _mediator.Send(createDoctorCommand);
+        Result<string> result = await _mediator.Send(createDoctorCommand);
         return Ok(result);
+    }
+
+    [HttpPut]
+    public async Task<IActionResult> Update(UpdateDoctorCommand updateDoctorCommand)
+    {
+        Result<string> result = await _mediator.Send(updateDoctorCommand);
+        return Ok(result);
+    }
+
+    [HttpDelete]
+    public async Task<IActionResult> DeleteById(DeleteDoctorByIdCommand deleteDoctorByIdCommand)
+    {
+        Result<string> result = await _mediator.Send(deleteDoctorByIdCommand);
+        return StatusCode(result.StatusCode, result);
     }
 }

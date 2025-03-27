@@ -12,5 +12,5 @@ public class BaseController : ControllerBase
     public BaseController(IMediator mediator)
     {
         _mediator = mediator;
-    }      
+    }
 }

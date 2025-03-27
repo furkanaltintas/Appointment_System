@@ -10,8 +10,8 @@ public class DepartmentsController : BaseController
 {
     public DepartmentsController(IMediator mediator) : base(mediator) { }
 
-   [HttpGet]
-   public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
+    [HttpGet]
+    public async Task<IActionResult> GetAll(CancellationToken cancellationToken)
     {
         GetAllDepartmentQuery getAllDepartmentQuery = new();
         Result<List<GetAllDepartmentResponse>> result = await _mediator.Send(getAllDepartmentQuery, cancellationToken);
