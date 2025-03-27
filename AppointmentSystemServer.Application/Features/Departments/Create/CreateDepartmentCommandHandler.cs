@@ -1,4 +1,5 @@
-﻿using AppointmentSystemServer.Application.Services.Repositories;
+﻿using AppointmentSystemServer.Application.Features.Departments._Constants;
+using AppointmentSystemServer.Application.Services.Repositories;
 using AppointmentSystemServer.Domain.Entities;
 using AppointmentSystemServer.Infrastructure.Caching;
 using AutoMapper;
@@ -15,7 +16,8 @@ public class CreateDepartmentCommandHandler(IDepartmentRepository departmentRepo
         Department department = mapper.Map<Department>(request);
         await departmentRepository.AddAsync(department, cancellationToken);
         await uow.SaveChangesAsync(cancellationToken);
+
         await cacheService.RemoveAsync(DepartmentConstants.CacheKey);
-        return Result<Unit>.Succeed(Unit.Value);
+        return new Result<Unit>(200, DepartmentConstants.CreateMessage);
     }
 }
