@@ -1,4 +1,5 @@
-﻿using AppointmentSystemServer.Application.Services.Repositories;
+﻿using AppointmentSystemServer.Application.Features.Departments._Constants;
+using AppointmentSystemServer.Application.Services.Repositories;
 using AppointmentSystemServer.Domain.Entities;
 using AppointmentSystemServer.Infrastructure.Caching;
 using AutoMapper;
@@ -9,7 +10,7 @@ using TS.Result;
 namespace AppointmentSystemServer.Application.Features.Departments.GetAll;
 
 public class GetAllDepartmentQueryHandler(
-    IDepartmentRepository departmentRepository, 
+    IDepartmentRepository departmentRepository,
     IMapper mapper,
     ICacheService cacheService) : IRequestHandler<GetAllDepartmentQuery, Result<List<GetAllDepartmentResponse>>>
 {
