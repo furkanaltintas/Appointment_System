@@ -1,5 +1,4 @@
-﻿using AppointmentSystemServer.Application.Services;
-using AppointmentSystemServer.Domain.Entities;
+﻿using AppointmentSystemServer.Domain.Entities;
 using AppointmentSystemServer.Infrastructure.Services;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
