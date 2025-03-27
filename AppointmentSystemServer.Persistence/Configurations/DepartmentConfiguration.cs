@@ -9,6 +9,9 @@ class DepartmentConfiguration : IEntityTypeConfiguration<Department>
 {
     public void Configure(EntityTypeBuilder<Department> builder)
     {
+        builder.HasKey(p => p.Id);
+        builder.Property(p => p.Id).ValueGeneratedOnAdd();
+
         builder.Property(d => d.Name).HasMaxLength(LengthConstants.MaxLenght100).IsRequired();
 
         builder

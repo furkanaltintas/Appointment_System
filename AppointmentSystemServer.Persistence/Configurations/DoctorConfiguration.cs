@@ -9,6 +9,9 @@ class DoctorConfiguration : IEntityTypeConfiguration<Doctor>
 {
     public void Configure(EntityTypeBuilder<Doctor> builder)
     {
+        builder.HasKey(p => p.Id);
+        builder.Property(p => p.Id).ValueGeneratedOnAdd();
+
         builder.Property(d => d.FirstName).HasMaxLength(LengthConstants.MaxLenght50);
         builder.Property(d => d.LastName).HasMaxLength(LengthConstants.MaxLenght50);
 
