@@ -3,4 +3,4 @@ using GenericRepository;
 
 namespace AppointmentSystemServer.Application.Services.Repositories;
 
-public interface  IDoctorRepository : IRepository<Doctor> { }
+public interface IDoctorRepository : IRepository<Doctor> { }
