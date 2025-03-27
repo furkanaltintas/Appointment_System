@@ -1,4 +1,4 @@
-﻿using AppointmentSystemServer.Application.Features.Doctors.GetAll;
+﻿using AppointmentSystemServer.Application.Features.Doctors._Constants;
 using AppointmentSystemServer.Application.Services.Repositories;
 using AppointmentSystemServer.Domain.Entities;
 using AppointmentSystemServer.Infrastructure.Caching;
@@ -13,16 +13,16 @@ public class CreateDoctorCommandHandler(
     IDoctorRepository doctorRepository,
     IUnitOfWork unitOfWork,
     IMapper mapper,
-    ICacheService cacheService) : IRequestHandler<CreateDoctorCommand, Result<Unit>>
+    ICacheService cacheService) : IRequestHandler<CreateDoctorCommand, Result<string>>
 {
-    public async Task<Result<Unit>> Handle(CreateDoctorCommand request, CancellationToken cancellationToken)
+    public async Task<Result<string>> Handle(CreateDoctorCommand request, CancellationToken cancellationToken)
     {
         Doctor doctor = mapper.Map<Doctor>(request);
 
         await doctorRepository.AddAsync(doctor, cancellationToken);
         await unitOfWork.SaveChangesAsync();
 
-        await cacheService.RemoveAsync(DoctorConstants.CacheKey);
-        return Result<Unit>.Succeed(Unit.Value);
+        await cacheService.RemoveByPrefixAsync(new() { DoctorConstants.CacheKey, DoctorConstants.CacheKeyWrite(request.DepartmentId) });
+        return DoctorConstants.CreateMessage;
     }
 }

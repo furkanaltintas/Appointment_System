@@ -3,4 +3,4 @@ using TS.Result;
 
 namespace AppointmentSystemServer.Application.Features.Doctors.Create;
 
-public record class CreateDoctorCommand(string FirstName, string LastName, int Department) : IRequest<Result<Unit>>;
+public record class CreateDoctorCommand(string FirstName, string LastName, int DepartmentId) : IRequest<Result<string>>;
