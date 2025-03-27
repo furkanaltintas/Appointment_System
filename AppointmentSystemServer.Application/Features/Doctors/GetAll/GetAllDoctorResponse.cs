@@ -1,3 +1,5 @@
-﻿namespace AppointmentSystemServer.Application.Features.Doctors.GetAll;
+﻿using AppointmentSystemServer.Application.Features.Departments.GetAll;
 
-public sealed record GetAllDoctorResponse(string DepartmentName, string FirstName, string LastName, string FullName);
+namespace AppointmentSystemServer.Application.Features.Doctors.GetAll;
+
+public record GetAllDoctorResponse(string Id, string FirstName, string LastName, string FullName, GetAllDepartmentResponse Department);
