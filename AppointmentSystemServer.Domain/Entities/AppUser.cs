@@ -10,16 +10,4 @@ public class AppUser : IdentityUser<Guid>, IEntity
     public string FirstName { get; set; }
     public string LastName { get; set; }
     public string FullName => $"{FirstName} {LastName}";
-
-    public AppUser()
-    {
-        FirstName = string.Empty;
-        LastName = string.Empty;
-    }
-
-    public AppUser(string firstName, string lastName)
-    {
-        FirstName = firstName;
-        LastName = lastName;
-    }
 }

@@ -12,17 +12,6 @@ public class Appointment : BaseEntity
     public bool IsCompleted { get; set; }
 
 
-    public virtual Doctor Doctor { get; set; } = new Doctor();
-    public virtual Patient Patient { get; set; } = new Patient();
-
-    public Appointment() { }
-
-    public Appointment(int doctorId, int patientId, DateTime startDate, DateTime endDate, bool isCompleted)
-    {
-        DoctorId = doctorId;
-        PatientId = patientId;
-        StartDate = startDate;
-        EndDate = endDate;
-        IsCompleted = isCompleted;
-    }
+    public virtual Doctor Doctor { get; set; }
+    public virtual Patient Patient { get; set; }
 }

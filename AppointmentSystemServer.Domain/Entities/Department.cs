@@ -4,7 +4,7 @@ namespace AppointmentSystemServer.Domain.Entities;
 
 public class Department : BaseEntity
 {
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; set; }
 
-    public ICollection<Doctor> Doctors { get; set; } = new HashSet<Doctor>();
+    public ICollection<Doctor> Doctors { get; set; }
 }
