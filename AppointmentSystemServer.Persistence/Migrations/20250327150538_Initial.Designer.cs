@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AppointmentSystemServer.Persistence.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250322213944_Initial")]
+    [Migration("20250327150538_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -513,13 +513,13 @@ namespace AppointmentSystemServer.Persistence.Migrations
             modelBuilder.Entity("AppointmentSystemServer.Domain.Entities.Appointment", b =>
                 {
                     b.HasOne("AppointmentSystemServer.Domain.Entities.Doctor", "Doctor")
-                        .WithMany()
+                        .WithMany("Appointments")
                         .HasForeignKey("DoctorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AppointmentSystemServer.Domain.Entities.Patient", "Patient")
-                        .WithMany()
+                        .WithMany("Appointments")
                         .HasForeignKey("PatientId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -558,6 +558,16 @@ namespace AppointmentSystemServer.Persistence.Migrations
             modelBuilder.Entity("AppointmentSystemServer.Domain.Entities.Department", b =>
                 {
                     b.Navigation("Doctors");
+                });
+
+            modelBuilder.Entity("AppointmentSystemServer.Domain.Entities.Doctor", b =>
+                {
+                    b.Navigation("Appointments");
+                });
+
+            modelBuilder.Entity("AppointmentSystemServer.Domain.Entities.Patient", b =>
+                {
+                    b.Navigation("Appointments");
                 });
 #pragma warning restore 612, 618
         }
