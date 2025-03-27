@@ -1,12 +1,10 @@
 ﻿using AppointmentSystemServer.Domain.Entities;
-using AppointmentSystemServer.Infrastructure.Configurations;
 using AppointmentSystemServer.Persistence.Context;
 using GenericRepository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Scrutor;
-using StackExchange.Redis;
 using System.Reflection;
 
 namespace AppointmentSystemServer.Persistence;
@@ -38,12 +36,6 @@ public static class PersistenceServiceRegistration
             .AsImplementedInterfaces()
             .WithScopedLifetime();
         });
-
-
-
-        // Redis bağlantısı
-        var redisConnection = configuration.GetConnectionString("Redis") ?? "localhost:6379";
-        services.AddSingleton<IConnectionMultiplexer>(ConnectionMultiplexer.Connect(redisConnection));
 
         return services;
     }
