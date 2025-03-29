@@ -11,9 +11,9 @@ using TS.Result;
 namespace AppointmentSystemServer.Application.Features.Departments.Update;
 
 public class UpdateDepartmentCommandHandler(
-    IDepartmentRepository departmentRepository, 
-    IUnitOfWork uow, 
-    IMapper mapper, 
+    IDepartmentRepository departmentRepository,
+    IUnitOfWork uow,
+    IMapper mapper,
     ICacheService cacheService) : IRequestHandler<UpdateDepartmentCommand, Result<string>>
 {
     public async Task<Result<string>> Handle(UpdateDepartmentCommand request, CancellationToken cancellationToken)
