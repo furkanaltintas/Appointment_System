@@ -1,6 +1,7 @@
 ﻿using AppointmentSystemServer.Domain.Entities;
 using AppointmentSystemServer.Persistence.Helpers;
 using GenericRepository;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
@@ -11,6 +12,7 @@ class AppDbContext : IdentityDbContext<AppUser, AppRole, Guid>, IUnitOfWork
 {
 
     #region MODEL
+    public DbSet<AppUserRole> AppUserRoles { get; set; }
     public DbSet<Appointment> Appointments { get; set; }
     public DbSet<Department> Departments { get; set; }
     public DbSet<Doctor> Doctors { get; set; }

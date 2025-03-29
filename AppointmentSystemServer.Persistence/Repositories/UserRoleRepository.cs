@@ -5,7 +5,7 @@ using GenericRepository;
 
 namespace AppointmentSystemServer.Persistence.Repositories;
 
-class AppointmentRepository : Repository<Appointment, AppDbContext>, IAppointmentRepository
+class UserRoleRepository : Repository<AppUserRole, AppDbContext>, IUserRoleRepository
 {
-    public AppointmentRepository(AppDbContext context) : base(context) { }
+    public UserRoleRepository(AppDbContext context) : base(context) { }
 }
