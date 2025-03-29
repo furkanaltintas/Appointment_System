@@ -7,7 +7,7 @@ using TS.Result;
 
 namespace AppointmentSystemServer.Application.Features.Auth.Login;
 
-sealed class LoginCommandHandler(UserManager<AppUser> userManager, IJwtTokenGenerator jwtTokenGenerator) : IRequestHandler<LoginCommandRequest, Result<LoginCommandResponse>>
+class LoginCommandHandler(UserManager<AppUser> userManager, IJwtTokenGenerator jwtTokenGenerator) : IRequestHandler<LoginCommandRequest, Result<LoginCommandResponse>>
 {
     public async Task<Result<LoginCommandResponse>> Handle(LoginCommandRequest request, CancellationToken cancellationToken)
     {
@@ -17,7 +17,7 @@ sealed class LoginCommandHandler(UserManager<AppUser> userManager, IJwtTokenGene
         bool checkPassword = await userManager.CheckPasswordAsync(user, request.Password);
         if (!checkPassword) return Result<LoginCommandResponse>.Failure("Email or password is incorrect");
 
-        string token = jwtTokenGenerator.CreateToken(user);
+        string token = await jwtTokenGenerator.CreateToken(user);
         LoginCommandResponse loginCommandResponse = new(token);
         return Result<LoginCommandResponse>.Succeed(loginCommandResponse);
     }

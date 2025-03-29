@@ -41,11 +41,15 @@ public static class PresentationServiceRegistration
             options.AddPolicy(AllowSpecificOrigins, policy =>
             {
                 policy.WithOrigins("http://localhost:4200") // Güvenilir domainleri ekle           
-                      .AllowAnyMethod()
                       .AllowAnyHeader()
+                      .AllowAnyMethod()
+                      .AllowCredentials()
                       .WithExposedHeaders("Authorization");
             });
         });
+
+        services.AddSignalR();
+        services.AddHostedService<RemoveExpiredAppointmentsService>();
 
         return services;
     }

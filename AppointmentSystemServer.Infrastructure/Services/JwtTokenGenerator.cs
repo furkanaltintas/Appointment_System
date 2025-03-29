@@ -1,5 +1,6 @@
 ﻿using AppointmentSystemServer.Domain.Entities;
 using AppointmentSystemServer.Infrastructure.Configurations;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -10,14 +11,16 @@ namespace AppointmentSystemServer.Infrastructure.Services;
 
 public class JwtTokenGenerator : IJwtTokenGenerator
 {
+    private readonly UserManager<AppUser> _userManager;
     private readonly JwtSettings _jwtSettings;
 
-    public JwtTokenGenerator(IOptions<JwtSettings> jwtSettings)
+    public JwtTokenGenerator(UserManager<AppUser> userManager, IOptions<JwtSettings> jwtSettings)
     {
+        _userManager = userManager;
         _jwtSettings = jwtSettings.Value;
     }
 
-    public string CreateToken(AppUser user)
+    public async Task<string> CreateToken(AppUser user)
     {
         DateTime expires = DateTime.UtcNow.AddDays(_jwtSettings.ExpiryInDays);
 
@@ -28,21 +31,26 @@ public class JwtTokenGenerator : IJwtTokenGenerator
             issuer: _jwtSettings.Issuer,
             audience: _jwtSettings.Audience,
             expires: expires,
-            claims: GetClaims(user),
+            claims: await GetClaims(user),
             notBefore: DateTime.UtcNow,
             signingCredentials: signingCredentials);
 
         return new JwtSecurityTokenHandler().WriteToken(securityToken);
     }
 
-    private IEnumerable<Claim> GetClaims(AppUser user)
+    private async Task<IEnumerable<Claim>> GetClaims(AppUser user)
     {
-        return new List<Claim>
+        IList<string> roles = await _userManager.GetRolesAsync(user);
+
+        List<Claim> claims = new()
         {
             new(ClaimTypes.NameIdentifier, user.Id.ToString()),
             new(ClaimTypes.Name, user.FullName),
-            new(ClaimTypes.Email, user.Email ?? string.Empty),
-            new(ClaimTypes.Role, string.Empty)
+            new(ClaimTypes.Email, user.Email ?? string.Empty)
         };
+
+        // Kullanıcının rollerini ekle
+        claims.AddRange(roles.Select(role => new Claim(ClaimTypes.Role, role)));
+        return claims;
     }
 }
