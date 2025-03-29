@@ -1,4 +1,5 @@
-﻿using AppointmentSystemServer.Application.Features.Auth.Login;
+﻿using AppointmentSystemServer.Application.Features.Commands.AuthCommands;
+using AppointmentSystemServer.Application.Features.Responses.AuthResponses;
 using AppointmentSystemServer.WebApi.Abstractions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

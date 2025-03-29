@@ -1,4 +1,4 @@
-﻿using AppointmentSystemServer.Application.Features.Roles.GetAllRolesForUsers;
+﻿using AppointmentSystemServer.Application.Features.Queries.RoleQueries;
 using AppointmentSystemServer.Application.Features.Roles.RoleSync;
 using AppointmentSystemServer.Domain.Entities;
 using AppointmentSystemServer.WebApi.Abstractions;
@@ -14,14 +14,6 @@ public class RolesController : BaseController
 {
     public RolesController(IMediator mediator) : base(mediator) { }
 
-
-    [HttpGet]
-    public async Task<IActionResult> Sync(CancellationToken cancellationToken)
-    {
-        RoleSyncCommand roleSyncCommand = new();
-        Result<string> result = await _mediator.Send(roleSyncCommand, cancellationToken);
-        return StatusCode(result.StatusCode, result);
-    }
 
     [HttpGet]
     public async Task<IActionResult> GetAllRoles(CancellationToken cancellationToken)

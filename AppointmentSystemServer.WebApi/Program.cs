@@ -1,6 +1,6 @@
 using AppointmentSystemServer.Application;
 using AppointmentSystemServer.Infrastructure;
-using AppointmentSystemServer.Infrastructure.SignalR.Hubs;
+using AppointmentSystemServer.Infrastructure.SignalR;
 using AppointmentSystemServer.Persistence;
 using AppointmentSystemServer.WebApi;
 using Scalar.AspNetCore;

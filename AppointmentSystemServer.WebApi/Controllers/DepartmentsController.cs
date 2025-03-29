@@ -1,4 +1,5 @@
-﻿using AppointmentSystemServer.Application.Features.Departments.GetAll;
+﻿using AppointmentSystemServer.Application.Features.Queries.DepartmentQueries;
+using AppointmentSystemServer.Application.Features.Responses.DepartmentResponses;
 using AppointmentSystemServer.WebApi.Abstractions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

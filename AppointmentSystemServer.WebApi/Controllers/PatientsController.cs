@@ -1,8 +1,5 @@
-﻿using AppointmentSystemServer.Application.Features.Patients.Create;
-using AppointmentSystemServer.Application.Features.Patients.DeleteById;
-using AppointmentSystemServer.Application.Features.Patients.GetAll;
-using AppointmentSystemServer.Application.Features.Patients.GetPatientByIdentityNumber;
-using AppointmentSystemServer.Application.Features.Patients.Update;
+﻿using AppointmentSystemServer.Application.Features.Commands.PatientCommands;
+using AppointmentSystemServer.Application.Features.Queries.PatientQueries;
 using AppointmentSystemServer.Domain.Entities;
 using AppointmentSystemServer.WebApi.Abstractions;
 using MediatR;

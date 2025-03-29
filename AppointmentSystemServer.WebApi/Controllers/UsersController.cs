@@ -1,9 +1,6 @@
-﻿using AppointmentSystemServer.Application.Features.Roles.GetAllRolesForUsers;
-using AppointmentSystemServer.Application.Features.User.Create;
-using AppointmentSystemServer.Application.Features.User.DeleteById;
-using AppointmentSystemServer.Application.Features.User.GetAll;
-using AppointmentSystemServer.Application.Features.User.Update;
-using AppointmentSystemServer.Domain.Entities;
+﻿using AppointmentSystemServer.Application.Features.Commands.UserCommands;
+using AppointmentSystemServer.Application.Features.Queries.UserQueries;
+using AppointmentSystemServer.Application.Features.Responses.UserResponses;
 using AppointmentSystemServer.WebApi.Abstractions;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;

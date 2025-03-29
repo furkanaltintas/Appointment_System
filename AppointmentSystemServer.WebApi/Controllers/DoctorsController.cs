@@ -1,8 +1,6 @@
-﻿using AppointmentSystemServer.Application.Features.Doctors.Create;
-using AppointmentSystemServer.Application.Features.Doctors.DeleteById;
-using AppointmentSystemServer.Application.Features.Doctors.GetAll;
-using AppointmentSystemServer.Application.Features.Doctors.GetAllDoctorByDepartment;
-using AppointmentSystemServer.Application.Features.Doctors.Update;
+﻿using AppointmentSystemServer.Application.Features.Commands.DoctorCommands;
+using AppointmentSystemServer.Application.Features.Queries.DoctorQueries;
+using AppointmentSystemServer.Application.Features.Responses.DoctorResponses;
 using AppointmentSystemServer.Domain.Entities;
 using AppointmentSystemServer.WebApi.Abstractions;
 using MediatR;

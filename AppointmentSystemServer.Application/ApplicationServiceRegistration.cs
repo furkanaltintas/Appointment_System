@@ -1,6 +1,4 @@
-﻿using AppointmentSystemServer.Application.Features.Appointments._Rules;
-using AppointmentSystemServer.Application.Features.Patients._Rules;
-using AppointmentSystemServer.Application.Features.User._Rules;
+﻿using AppointmentSystemServer.Application.Features.Rules;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 namespace AppointmentSystemServer.Application;

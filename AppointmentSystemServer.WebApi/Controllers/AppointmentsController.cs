@@ -1,7 +1,6 @@
-﻿using AppointmentSystemServer.Application.Features.Appointments.Create;
-using AppointmentSystemServer.Application.Features.Appointments.DeleteById;
-using AppointmentSystemServer.Application.Features.Appointments.GetAll;
-using AppointmentSystemServer.Application.Features.Appointments.Update;
+﻿using AppointmentSystemServer.Application.Features.Commands.AppointmentCommands;
+using AppointmentSystemServer.Application.Features.Queries.AppointmentQueries;
+using AppointmentSystemServer.Application.Features.Responses.AppointmentResponses;
 using AppointmentSystemServer.WebApi.Abstractions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
