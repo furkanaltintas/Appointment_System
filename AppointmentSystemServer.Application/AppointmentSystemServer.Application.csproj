@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Appointments\_Mappings\" />
     <Folder Include="Services\DepartmentService\" />
   </ItemGroup>
 
