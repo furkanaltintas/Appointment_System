@@ -1,5 +1,6 @@
 ﻿using AppointmentSystemServer.Application.Features.Appointments._Constants;
 using AppointmentSystemServer.Application.Services.Repositories;
+using AppointmentSystemServer.Domain.Entities;
 using TS.Result;
 
 namespace AppointmentSystemServer.Application.Features.Appointments._Rules;
@@ -14,12 +15,19 @@ public class AppointmentBusinessRules(IAppointmentRepository appointmentReposito
 
         return await IsAppointmentDateNotAvailable(doctorId, startDate, endDate, cancellationToken)
             ? Result<string>.Failure(AppointmentConstants.DateIsNotAvailable)
-            : "";
+        : String.Empty;
+    }
+
+    public Result<string> ValidateAppointmentForDeletion(Appointment appointment)
+    {
+        if (appointment == null) return Result<string>.Failure(AppointmentConstants.NotFound);
+        if (appointment.IsCompleted) return Result<string>.Failure(AppointmentConstants.YouCannotDeleteACompleted);
+        return String.Empty;
     }
 
     private async Task<bool> IsAppointmentDateNotAvailable(int doctorId, DateTime startDate, DateTime endDate, CancellationToken cancellationToken)
     {
-        bool isAppointmentDateNotAvailable = await appointmentRepository
+        Boolean isAppointmentDateNotAvailable = await appointmentRepository
             .AnyAsync
             (a => a.DoctorId == doctorId &&
             (a.StartDate < endDate && a.StartDate >= startDate) || // Mevcut randevunun bitişi, diğer randevunun başlangıcıyla çakışıyor mu ?
