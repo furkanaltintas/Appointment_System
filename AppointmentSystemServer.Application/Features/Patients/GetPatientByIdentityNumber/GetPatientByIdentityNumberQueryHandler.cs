@@ -11,11 +11,10 @@ class GetPatientByIdentityNumberQueryHandler(IPatientRepository patientRepositor
 {
     public async Task<Result<Patient>> Handle(GetPatientByIdentityNumberQuery request, CancellationToken cancellationToken)
     {
-        var patient = await cacheService.GetOrSetAsync(PatientConstants.CacheKeyGetByIdentityNumber(request.IdentityNumber), async () =>
-        {
-            return await patientRepository.GetByExpressionAsync(p => p.IdentityNumber == request.IdentityNumber, cancellationToken);
-        });
+        Patient? patient = new();
+        patient = await patientRepository.GetByExpressionAsync(p => p.IdentityNumber == request.IdentityNumber, cancellationToken);
 
-        return patient;
+        if (patient is null) return patient;
+        return await cacheService.GetOrSetAsync(PatientConstants.CacheKeyGetByIdentityNumber(request.IdentityNumber), async () => patient);
     }
 }
