@@ -1,9 +1,8 @@
-﻿using AppointmentSystemServer.Domain.Commons;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
 namespace AppointmentSystemServer.Domain.Entities;
 
-public class AppUser : IdentityUser<Guid>, IEntity
+public class AppUser : IdentityUser<Guid>
 {
     // sealed => Bu classın başka bir class tarafından inherit edilmesini engelliyor
 
