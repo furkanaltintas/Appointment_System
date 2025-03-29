@@ -199,7 +199,7 @@ public class CacheService : ICacheService
             {
                 var server = _redis.GetServer(_redis.GetEndPoints().First());
 
-               var keys = server.Keys(pattern: $"AppointmentSystemCache:{prefix}*").ToArray(); // {AppointmentSystemCache:GetAllDepartmentQueryHandler} ile başlayan tüm keyleri alacak
+                var keys = server.Keys(pattern: $"AppointmentSystemCache:{prefix}*").ToArray(); // {AppointmentSystemCache:GetAllDepartmentQueryHandler} ile başlayan tüm keyleri alacak
 
                 if (keys.Length > 0)
                     await _db.KeyDeleteAsync(keys);

@@ -21,7 +21,7 @@ public class JwtTokenGenerator : IJwtTokenGenerator
     {
         DateTime expires = DateTime.UtcNow.AddDays(_jwtSettings.ExpiryInDays);
 
-        SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey));
+        SymmetricSecurityKey securityKey = new(Encoding.UTF8.GetBytes(_jwtSettings.SecretKey ?? string.Empty));
         SigningCredentials signingCredentials = new(securityKey, SecurityAlgorithms.HmacSha512);
 
         JwtSecurityToken securityToken = new(
