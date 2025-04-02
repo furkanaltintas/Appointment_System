@@ -22,3 +22,9 @@ Appointment System, **.NET 9** ve **Angular 19** kullanılarak geliştirilen bir
 - **JWT Authentication**
 
 📂 **Client Repository:** [Appointment System Client](https://github.com/furkanaltintas/AppointmentSystemClient)
+
+![Screenshot_1](https://github.com/user-attachments/assets/e76e549a-1f64-4db5-8607-bb91bb124553)
+&nbsp;
+![Screenshot_2](https://github.com/user-attachments/assets/6e8ecb5d-9d82-4c96-bcf5-d8d6ebe8bd80)
+&nbsp;
+![Screenshot_3](https://github.com/user-attachments/assets/5caae698-1ea7-469f-824f-2dc3f55f9477)
